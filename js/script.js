@@ -1,25 +1,53 @@
-const phonePlus = elementCallById('phone-plus');
-const plusEvent = phonePlus.addEventListener('click', function(){
+forPhoneAndCaseValue('phone-plus', 'phone-field', true);
+forPhoneAndCaseValue('phone-minus', 'phone-field', false);
+forPhoneAndCaseValue('case-plus', 'case-field', true);
+forPhoneAndCaseValue('case-minus', 'case-field', false);
 
-    forPlusButton('phone-field');
+
+
+// advanced
+
+// forPhoneAndCaseValue
+function forPhoneAndCaseValue(elementId, fieldId, plusOrMinus){
+    const calling = elementCallById(elementId);
+const event = calling.addEventListener('click', function(){
+
+    if(plusOrMinus === true){
+        forPlusButton(fieldId);
+        if(fieldId === 'phone-field'){
+            phonePrice(fieldId, 'phone-price')
+        }
+        else{
+            casePrice(fieldId, 'case-price')
+        }
+    }
+    else{
+        forMinusButton(fieldId);
+        if(fieldId === 'phone-field'){
+            phonePrice(fieldId, 'phone-price')
+        }
+        else{
+            casePrice(fieldId, 'case-price')
+        }
+    }
 })
+}
 
+elementCallById('product-choice').addEventListener('click', function(){
+    const phoneTotal = getInnerTextById('phone-price');
+const caseTotal = getInnerTextById('case-price');
 
-const phoneMinus = document.getElementById('phone-minus');
-const minusEvent = phoneMinus.addEventListener('click', function(){
+const subTotal = phoneTotal + caseTotal;
+const subTotalFloat = parseFloat(subTotal);
 
-    forMinusButton('phone-field');
-})
+setInnerTextById(subTotalFloat, 'subtotal')
 
+let taxAmount = subTotalFloat * 0.1;
+let taxAmountFixed = parseFloat(taxAmount.toFixed(2));
 
-const casePlus = elementCallById('case-plus');
-casePlus.addEventListener('click', function(){
+setInnerTextById(taxAmountFixed, 'tax');
 
-    forPlusButton('case-field');
-})
+let total = subTotalFloat + taxAmountFixed;
 
-
-const caseMinus = elementCallById('case-minus');
-caseMinus.addEventListener('click', function(){
-    forMinusButton('case-field');
+setInnerTextById(total, 'total');
 })

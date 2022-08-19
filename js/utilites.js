@@ -1,22 +1,9 @@
-// const elementCall = document.getElementById('phone-minus');
-// const elementEventSecond = elementCallSecond.addEventListener('click', function(){
-//     let phoneField = document.getElementById('phone-field');
-//     const phoneFieldString = phoneField.value;
-//     let phoneFieldOldValue = parseFloat(phoneFieldString);
-// }
-// )
-
-
 function elementCallById(elementId){
     const elementCall = document.getElementById(elementId);
     return elementCall;
 }
 
-function addEvenHandlerById(elementId, functionToRun){
-    const calling = elementCallById(elementId);
-    const eventHanlder = calling.addEventListener('click', functionToRun)
-}
-
+// for input tag
 function getValueById(elementId){
     const getElement = elementCallById(elementId);
     const getValueString = getElement.value;
@@ -27,18 +14,46 @@ function getValueById(elementId){
 function setValueById(ValueToBeSet, FieldToBeSet){
     const targetField = elementCallById(FieldToBeSet);
     targetField.value = ValueToBeSet;
+    return targetField.value;
+}
+
+// for others tag
+
+function getInnerTextById(elementId){
+    const getElement = elementCallById(elementId);
+    const getValueString = getElement.innerText;
+    const getValueFloat = parseFloat(getValueString);
+    return getValueFloat;
+}
+
+function setInnerTextById(innerTextToBeSet, FieldToBeSet){
+    const targetField = elementCallById(FieldToBeSet);
+    targetField.innerText = innerTextToBeSet;
+    return targetField.innerText;
 }
 
 function forPlusButton(elementId){
     let phoneFieldOldValue = getValueById(elementId)
-
     const phoneFieldNewValue = phoneFieldOldValue + 1;
     setValueById(phoneFieldNewValue, elementId);
 }
 
 function forMinusButton(elementId){
     let phoneFieldOldValue = getValueById(elementId)
-
     const phoneFieldNewValue = phoneFieldOldValue - 1;
     setValueById(phoneFieldNewValue, elementId);
 }
+
+function phonePrice(fieldId, priceId){
+    const quantityValue = getValueById(fieldId);
+    const phonePrice = (parseFloat(quantityValue))*1219;
+    setInnerTextById(phonePrice, priceId);
+
+}
+
+function casePrice(fieldId, priceId){
+    const caseQuantityValue = getValueById(fieldId);
+    const casePrice = (parseFloat(caseQuantityValue))*59;
+    setInnerTextById(casePrice, priceId);
+}
+
