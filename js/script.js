@@ -4,7 +4,6 @@ forPhoneAndCaseValue('case-plus', 'case-field', true);
 forPhoneAndCaseValue('case-minus', 'case-field', false);
 
 
-
 // advanced
 
 // forPhoneAndCaseValue
@@ -33,6 +32,7 @@ const event = calling.addEventListener('click', function(){
 })
 }
 
+// for subtotal, tax and other calculation
 elementCallById('product-choice').addEventListener('click', function(){
     const phoneTotal = getInnerTextById('phone-price');
 const caseTotal = getInnerTextById('case-price');

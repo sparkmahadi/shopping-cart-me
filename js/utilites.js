@@ -17,6 +17,8 @@ function setValueById(ValueToBeSet, FieldToBeSet){
     return targetField.value;
 }
 
+
+
 // for others tag
 
 function getInnerTextById(elementId){
